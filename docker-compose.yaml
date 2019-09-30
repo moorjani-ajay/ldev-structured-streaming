@@ -1,4 +1,3 @@
-#Docker file for Spark
 version: '2.1'
 services:
     zookeeper:
@@ -31,3 +30,26 @@ services:
         - ./mapped-volume/kafka/data:/var/lib/kafka/data
       depends_on:
         - zookeeper
+    spark-master:
+      image: ldev/spark:latest
+      container_name: spark-master
+      hostname: spark-master
+      ports:
+        - "8080:8080"
+        - "7077:7077"
+      environment:
+        - "SPARK_LOCAL_IP=spark-master"
+        - "SPARK_MASTER_PORT=7077"
+        - "SPARK_MASTER_WEBUI_PORT=8080"
+      command: "/start-master.sh"
+    
+    spark-worker:
+      image: ldev/spark:latest
+      depends_on:
+        - spark-master
+      ports:
+        - 8080
+      environment:
+        - "SPARK_MASTER=spark://spark-master:7077"
+        - "SPARK_WORKER_WEBUI_PORT=8080"
+      command: "/start-worker.sh"
