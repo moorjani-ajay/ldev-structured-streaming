@@ -11,6 +11,9 @@ Commands:
 ## How to scale spark worker nodes?
 `docker-compose up --scale spark-worker=2`
 
+## How to start spark-shell?
+
+
 ## Future scope
 Adding services like `kafka-connect` and `schema-registry` along with `k-sql` 
 
