@@ -2,4 +2,4 @@
 
 set -e
 
-docker build -t ldev/spark:latest ./spark
+docker build -t ldev/spark:v0.1.0 ./spark

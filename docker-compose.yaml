@@ -31,7 +31,7 @@ services:
       depends_on:
         - zookeeper
     spark-master:
-      image: ldev/spark:latest
+      image: ldev/spark:v0.1.0
       container_name: spark-master
       hostname: spark-master
       ports:
@@ -44,7 +44,7 @@ services:
       command: "/start-master.sh"
     
     spark-worker:
-      image: ldev/spark:latest
+      image: ldev/spark:v0.1.0
       depends_on:
         - spark-master
       ports:
